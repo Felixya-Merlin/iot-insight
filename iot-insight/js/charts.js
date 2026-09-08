@@ -1,0 +1,1 @@
+function createChartWithData(canvasId,type,labels,datasets){const canvas=document.getElementById(canvasId);if(!canvas||typeof Chart==='undefined')return null;return new Chart(canvas,{type,data:{labels:labels||[],datasets:datasets||[]},options:{responsive:true,maintainAspectRatio:false}})}
