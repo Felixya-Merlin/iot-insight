@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login | IoT Insight</title>
+    <meta name="description" content="IoT Insight - Industrial Monitoring and Analytics Platform">
+    <link rel="stylesheet" href="css/auth.css">
+</head>
+
+<body>
+    <div class="auth-page" id="authPage">
+        <div class="sky-glow"></div>
+        <div class="sun" id="sun"></div>
+        <div class="moon" id="moon"></div>
+        <div class="stars"></div>
+        <div class="mountains mountain-back"></div>
+        <div class="mountains mountain-front"></div>
+
+        <header class="auth-header">
+            <div class="logo">IoT<span>Insight</span></div>
+            <nav>
+               
+            </nav>
+            <div class="status">
+                <span></span>
+                System Online
+            </div>
+        </header>
+
+        <main class="auth-container">
+            <div class="glass-card">
+                <div class="card-header">
+                    <div class="small-title">SENSOR INTELLIGENCE WORKSPACE</div>
+                    <h1>Welcome Back</h1>
+                    <p>Sign in to access your IoT monitoring and analytics dashboard.</p>
+                </div>
+
+                <form id="loginForm">
+                    <div class="input-group">
+                        <label for="loginEmail">Email Address</label>
+                        <div class="input-wrapper">
+                            <span class="input-icon">✉</span>
+                            <input type="email" id="loginEmail" placeholder="Enter your email" required>
+                        </div>
+                    </div>
+
+                    <div class="input-group">
+                        <label for="loginPassword">Password</label>
+                        <div class="input-wrapper">
+                            <span class="input-icon">🔒</span>
+                            <input type="password" id="loginPassword" placeholder="Enter your password" required>
+                            <button type="button" class="password-toggle" id="toggleLoginPassword">👁</button>
+                        </div>
+                    </div>
+
+                    <div class="form-options">
+                        <label class="remember">
+                            <input type="checkbox">
+                            Remember me
+                        </label>
+                        <a href="pages/forgot-password.html">Forgot password?</a>
+                    </div>
+
+                    <button type="submit" class="auth-button" id="loginButton">Sign In</button>
+                    <div class="message" id="loginMessage"></div>
+                </form>
+
+                <div class="divider"><span>OR</span></div>
+
+                <div class="signup-link">
+                    Don't have an account?
+                    <a href="pages/signup.html">Create Account</a>
+                </div>
+            </div>
+        </main>
+
+        <footer class="auth-footer">
+            <span>IoT Insight</span>
+            <span>•</span>
+            <span>Real-time Monitoring</span>
+            <span>•</span>
+            <span>Data Analytics</span>
+        </footer>
+    </div>
+
+    <script type="module" src="js/auth.js"></script>
+    <script type="module" src="js/time-theme.js"></script>
+</body>
+</html>

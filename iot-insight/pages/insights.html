@@ -1,0 +1,77 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <title>Insights | IoT Insight</title>
+    <link rel="stylesheet" href="../css/main.css" />
+    <link rel="stylesheet" href="../css/layout.css" />
+    <link rel="stylesheet" href="../css/components.css" />
+    <link rel="stylesheet" href="../css/responsive.css" />
+  </head>
+  <body>
+    <div class="app-layout">
+      <aside class="sidebar">
+        <div class="sidebar-logo">
+          <h2>IoT Insight</h2>
+          <span>Sensor intelligence workspace</span>
+        </div>
+        <nav class="sidebar-nav">
+          <div class="sidebar-nav-title">Workspace</div>
+          <a href="dashboard.html" class="nav-link">Dashboard</a
+          ><a href="data-import.html" class="nav-link">Import Data</a
+          ><a href="devices.html" class="nav-link">Devices</a
+          ><a href="analysis.html" class="nav-link">Analysis</a
+          ><a href="alerts.html" class="nav-link">Alerts</a
+          ><a href="reports.html" class="nav-link">Reports</a
+          ><a href="insights.html" class="nav-link">Insights</a
+          ><a href="settings.html" class="nav-link">Settings</a>
+        </nav>
+      </aside>
+      <main class="main-content">
+        <header class="topbar">
+          <button class="menu-button" id="menuButton">Menu</button>
+          <div>
+            <h1>Insights</h1>
+            <p class="page-subtitle">
+              Actionable observations from the active import.
+            </p>
+          </div>
+          
+        </header>
+        <section class="page-content">
+          <div class="card">
+            <div class="card-header">
+              <div>
+                <h3>How IoT Insight works</h3>
+                <p class="muted">
+                  Import a CSV, inspect its quality, and confirm one active
+                  dataset. Dashboard, device views, analysis, alerts, reports,
+                  and insights then use that dataset only.
+                </p>
+              </div>
+            </div>
+          </div>
+          <div class="card">
+            <div class="card-header">
+              <div>
+                <h3>Generated observations</h3>
+                <p class="muted">
+                  Review, edit, flag, dismiss, or add observations to a report.
+                </p>
+              </div>
+            </div>
+            <div id="insightsList" class="insights-list">
+              <div class="empty-state">Loading active dataset insights...</div>
+            </div>
+            <div id="insightGraphs" class="parameter-charts"></div>
+          </div>
+        </section>
+      </main>
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="../js/navigation.js"></script>
+    <script type="module" src="../js/auth.js"></script>
+    <script type="module" src="../js/insights.js"></script>
+  </body>
+</html>

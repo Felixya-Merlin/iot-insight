@@ -1,0 +1,457 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: Inter, Arial, Helvetica, sans-serif;
+    overflow-x: hidden;
+}
+
+.auth-page {
+    --sky-top: #251858;
+    --sky-middle: #51479a;
+    --sky-bottom: #a9c5d5;
+    --sun-color: #ffd86b;
+    --sun-glow: rgba(255, 216, 107, 0.45);
+
+    min-height: 100vh;
+    position: relative;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    background: linear-gradient(180deg, var(--sky-top) 0%, var(--sky-middle) 48%, var(--sky-bottom) 100%);
+    color: white;
+    transition: background 2s ease, --sky-top 2s ease;
+}
+
+.sun {
+    position: absolute;
+    width: 90px;
+    height: 90px;
+    border-radius: 50%;
+    background: radial-gradient(circle, #fff7a8 0%, var(--sun-color) 45%, #ff9f43 100%);
+    box-shadow: 0 0 30px var(--sun-glow), 0 0 80px var(--sun-glow);
+    transition: all 2s ease;
+    z-index: 1;
+}
+
+.sky-glow {
+    position: absolute;
+    width: 450px;
+    height: 450px;
+    border-radius: 50%;
+    background: radial-gradient(circle, var(--sun-glow), transparent 70%);
+    transform: translate(-50%, -50%);
+    pointer-events: none;
+    transition: all 2s ease;
+    z-index: 0;
+}
+
+.stars {
+    position: absolute;
+    inset: 0;
+    background-image: radial-gradient(white 1px, transparent 1px);
+    background-size: 75px 75px;
+    opacity: 0.15;
+    animation: starsMove 25s linear infinite;
+    transition: opacity 2s ease;
+}
+
+@keyframes starsMove {
+    from { transform: translateY(0); }
+    to { transform: translateY(75px); }
+}
+
+.moon {
+    position: absolute;
+    width: 70px;
+    height: 70px;
+    border-radius: 50%;
+    background: #fffde7;
+    box-shadow: 0 0 30px rgba(255,255,255,.35);
+    opacity: 0;
+    transition: opacity 2s ease;
+    z-index: 2;
+}
+
+.auth-page.morning {
+    --sky-top: #6c91bd;
+    --sky-middle: #b8cce0;
+    --sky-bottom: #f3d9ae;
+    --sun-color: #ffd45c;
+    --sun-glow: rgba(255, 190, 70, .38);
+}
+
+.auth-page.afternoon {
+    --sky-top: #4385c5;
+    --sky-middle: #79acd4;
+    --sky-bottom: #d7dfe0;
+    --sun-color: #ffcf32;
+    --sun-glow: rgba(255, 205, 50, .5);
+}
+
+.auth-page.evening {
+    --sky-top: #735c96;
+    --sky-middle: #c88783;
+    --sky-bottom: #f0c9a9;
+    --sun-color: #ffb15b;
+    --sun-glow: rgba(255, 150, 80, .42);
+}
+
+.auth-page.night {
+    --sky-top: #100c2c;
+    --sky-middle: #21184f;
+    --sky-bottom: #39456f;
+    --sun-color: #ffd86b;
+    --sun-glow: rgba(255,255,255,0);
+}
+
+.auth-page.night .sun {
+    opacity: 0;
+}
+
+.auth-page.night .moon {
+    opacity: 1;
+}
+
+.auth-page.night .stars {
+    opacity: .7;
+}
+
+.mountains {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 48%;
+    clip-path: polygon(0 60%, 8% 38%, 15% 55%, 25% 20%, 34% 52%, 45% 12%, 54% 42%, 65% 18%, 76% 50%, 86% 25%, 100% 45%, 100% 100%, 0 100%);
+}
+
+.mountain-back {
+    background: rgba(74, 73, 139, 0.8);
+    bottom: 18%;
+}
+
+.mountain-front {
+    background: rgba(36, 42, 94, 0.95);
+    height: 35%;
+}
+
+.auth-header {
+    position: relative;
+    z-index: 10;
+    width: 90%;
+    max-width: 1200px;
+    margin: 25px auto;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.logo {
+    font-size: 25px;
+    font-weight: 800;
+    letter-spacing: 3px;
+}
+
+.logo span {
+    font-weight: 400;
+    letter-spacing: 1px;
+}
+
+.auth-header nav {
+    display: flex;
+    gap: 30px;
+    margin-left: auto;
+    margin-right: 35px;
+}
+
+.auth-header nav a {
+    color: white;
+    text-decoration: none;
+    font-size: 14px;
+    opacity: 0.8;
+    transition: 0.3s;
+}
+
+.auth-header nav a:hover {
+    opacity: 1;
+}
+
+.status {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 12px;
+    opacity: 0.9;
+}
+
+.status span {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background: #54e89b;
+    box-shadow: 0 0 10px #54e89b;
+    animation: pulse 1.5s infinite;
+}
+
+@keyframes pulse {
+    50% { opacity: 0.3; }
+}
+
+.auth-container {
+    position: relative;
+    z-index: 5;
+    flex: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 30px;
+}
+
+.glass-card {
+    width: 410px;
+    padding: 38px;
+    border-radius: 22px;
+    background: rgba(255, 255, 255, 0.16);
+    border: 1px solid rgba(255,255,255,0.35);
+    backdrop-filter: blur(18px);
+    -webkit-backdrop-filter: blur(18px);
+    box-shadow: 0 25px 60px rgba(15,10,60,0.35);
+    animation: cardEnter 0.8s ease;
+}
+
+@keyframes cardEnter {
+    from {
+        opacity: 0;
+        transform: translateY(30px) scale(0.97);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+    }
+}
+
+.small-title {
+    font-size: 10px;
+    letter-spacing: 2px;
+    opacity: 0.8;
+    margin-bottom: 10px;
+}
+
+.card-header h1 {
+    font-size: 34px;
+    margin-bottom: 8px;
+}
+
+.card-header p {
+    font-size: 13px;
+    line-height: 1.6;
+    opacity: 0.8;
+    margin-bottom: 25px;
+}
+
+.input-group {
+    margin-bottom: 17px;
+}
+
+.input-group label {
+    display: block;
+    font-size: 12px;
+    margin-bottom: 7px;
+}
+
+.input-wrapper {
+    position: relative;
+}
+
+.input-wrapper input {
+    width: 100%;
+    height: 46px;
+    border: 1px solid rgba(255,255,255,0.3);
+    border-radius: 9px;
+    background: rgba(255,255,255,0.16);
+    color: white;
+    padding: 0 42px;
+    outline: none;
+    transition: 0.3s;
+}
+
+.input-wrapper input::placeholder {
+    color: rgba(255,255,255,0.65);
+}
+
+.input-wrapper input:focus {
+    border-color: white;
+    background: rgba(255,255,255,0.22);
+    box-shadow: 0 0 0 3px rgba(255,255,255,0.08);
+}
+
+.input-icon {
+    position: absolute;
+    left: 14px;
+    top: 50%;
+    transform: translateY(-50%);
+    opacity: 0.8;
+    z-index: 2;
+}
+
+.password-toggle {
+    position: absolute;
+    right: 10px;
+    top: 50%;
+    transform: translateY(-50%);
+    border: none;
+    background: none;
+    color: white;
+    cursor: pointer;
+}
+
+.form-options {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+    font-size: 11px;
+}
+
+.form-options a,
+.signup-link a,
+.terms a {
+    color: white;
+    font-weight: 600;
+}
+
+.remember {
+    display: flex;
+    gap: 6px;
+    align-items: center;
+}
+
+.auth-button {
+    width: 100%;
+    height: 48px;
+    border: none;
+    border-radius: 9px;
+    background: white;
+    color: #32206f;
+    font-size: 14px;
+    font-weight: 700;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+.auth-button:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 10px 25px rgba(0,0,0,0.2);
+}
+
+.auth-button:disabled {
+    opacity: 0.6;
+    cursor: not-allowed;
+}
+
+.divider {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin: 22px 0;
+    opacity: 0.5;
+    font-size: 10px;
+}
+
+.divider::before,
+.divider::after {
+    content: "";
+    flex: 1;
+    height: 1px;
+    background: white;
+}
+
+.signup-link {
+    text-align: center;
+    font-size: 12px;
+    opacity: 0.85;
+}
+
+.password-strength {
+    margin-top: -8px;
+    margin-bottom: 15px;
+}
+
+.strength-bar {
+    height: 4px;
+    border-radius: 5px;
+    background: rgba(255,255,255,0.2);
+    overflow: hidden;
+}
+
+.strength-bar span {
+    display: block;
+    height: 100%;
+    width: 0%;
+    background: white;
+    transition: 0.3s;
+}
+
+.password-strength small {
+    font-size: 10px;
+    opacity: 0.7;
+}
+
+.terms {
+    display: flex;
+    gap: 8px;
+    font-size: 10px;
+    margin-bottom: 18px;
+}
+
+.message {
+    min-height: 18px;
+    margin-top: 10px;
+    text-align: center;
+    font-size: 11px;
+}
+
+.auth-footer {
+    position: relative;
+    z-index: 10;
+    text-align: center;
+    padding: 15px;
+    font-size: 10px;
+    opacity: 0.65;
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+}
+
+@media (max-width: 700px) {
+    .auth-header {
+        width: 92%;
+    }
+
+    .auth-header nav {
+        display: none;
+    }
+
+    .status {
+        font-size: 10px;
+    }
+
+    .glass-card {
+        width: 100%;
+        max-width: 400px;
+        padding: 28px;
+    }
+
+    .card-header h1 {
+        font-size: 28px;
+    }
+
+    .moon {
+        left: 10%;
+        top: 25%;
+    }
+}

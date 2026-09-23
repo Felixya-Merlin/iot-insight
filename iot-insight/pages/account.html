@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Account | IoT Insight</title>
+    <link rel="stylesheet" href="../css/auth.css">
+    <style>
+        .account-card { width: min(560px, 100%); }
+        .account-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 12px; margin: 22px 0; }
+        .account-field { padding: 14px; border: 1px solid rgba(255,255,255,.22); border-radius: 10px; background: rgba(255,255,255,.1); }
+        .account-field span { display: block; margin-bottom: 5px; font-size: 10px; letter-spacing: 1.5px; opacity: .72; }
+        .account-field strong { display: block; overflow-wrap: anywhere; font-size: 13px; font-weight: 500; }
+        .account-actions { display: flex; gap: 12px; align-items: center; }
+        .account-actions .auth-button { flex: 1; }
+        .account-link { color: white; font-size: 12px; opacity: .82; text-decoration: none; }
+        .account-link:hover { opacity: 1; }
+        @media (max-width: 560px) { .account-grid { grid-template-columns: 1fr; } .account-actions { align-items: stretch; flex-direction: column; } }
+    </style>
+</head>
+<body>
+    <div class="auth-page" id="authPage">
+        <div class="sky-glow"></div>
+        <div class="sun" id="sun"></div>
+        <div class="moon" id="moon"></div>
+        <div class="stars"></div>
+        <div class="mountains mountain-back"></div>
+        <div class="mountains mountain-front"></div>
+
+        <header class="auth-header">
+            <div class="logo">IoT<span>Insight</span></div>
+            <nav><a href="dashboard.html">Workspace</a><a href="settings.html">Settings</a></nav>
+            <div class="status"><span></span> System Online</div>
+        </header>
+
+        <main class="auth-container">
+            <section class="glass-card account-card">
+                <div class="card-header">
+                    <div class="small-title">ACCOUNT SECURITY</div>
+                    <h1>Your Account</h1>
+                    <p>Review the identity attached to this active IoT Insight session.</p>
+                </div>
+                <div class="account-grid">
+                    <div class="account-field"><span>DISPLAY NAME</span><strong data-user-name>Loading...</strong></div>
+                    <div class="account-field"><span>EMAIL ADDRESS</span><strong data-user-email>Loading...</strong></div>
+                    <div class="account-field"><span>USER EMAIL</span><strong data-user-id>Loading...</strong></div>
+                    <div class="account-field"><span>SESSION STATUS</span><strong>Authenticated</strong></div>
+                </div>
+                <div class="account-actions">
+                    <button type="button" class="auth-button" data-logout>Sign Out</button>
+                    <a class="account-link" href="dashboard.html">Return to workspace</a>
+                </div>
+            </section>
+        </main>
+
+        <footer class="auth-footer"><span>IoT Insight</span><span>•</span><span>Secure Access</span><span>•</span><span>Session Accountability</span></footer>
+    </div>
+    <script type="module" src="../js/auth.js"></script>
+    <script type="module" src="../js/time-theme.js"></script>
+</body>
+</html>

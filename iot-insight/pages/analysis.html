@@ -1,0 +1,285 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Analysis | IoT Insight</title>
+
+    <link rel="stylesheet" href="../css/main.css">
+    <link rel="stylesheet" href="../css/layout.css">
+    <link rel="stylesheet" href="../css/components.css">
+    <link rel="stylesheet" href="../css/responsive.css">
+    <link rel="stylesheet" href="../css/dashboard-shell.css">
+</head>
+
+<body>
+
+<div class="app-layout">
+
+    <!-- Sidebar -->
+    <aside class="sidebar" id="sidebar">
+
+        <div class="sidebar-logo">
+            <h2>IoT Insight</h2>
+            <span>Industrial Analytics</span>
+        </div>
+
+        <nav class="sidebar-nav">
+            <div class="sidebar-nav-title">Workspace</div>
+            <a href="dashboard.html" class="nav-link"><span class="nav-icon">▦</span><span>Dashboard</span></a>
+            <a href="devices.html" class="nav-link"><span class="nav-icon">▣</span><span>Devices</span></a>
+            <a href="device-details.html" class="nav-link"><span class="nav-icon">◫</span><span>Device Details</span></a>
+            <a href="parameters.html" class="nav-link"><span class="nav-icon">⌁</span><span>Parameters</span></a>
+            <a href="analysis.html" class="nav-link active"><span class="nav-icon">◒</span><span>Analysis</span></a>
+            <a href="alerts.html" class="nav-link"><span class="nav-icon">!</span><span>Alerts</span></a>
+            <a href="reports.html" class="nav-link"><span class="nav-icon">▤</span><span>Reports</span></a>
+            <a href="data-import.html" class="nav-link"><span class="nav-icon">⇧</span><span>Data Import</span></a>
+            <a href="settings.html" class="nav-link"><span class="nav-icon">⚙</span><span>Settings</span></a>
+        </nav>
+
+    </aside>
+
+
+    <!-- Main Area -->
+    <main class="main-content">
+
+        <!-- Header -->
+        <header class="topbar">
+
+            <button class="menu-button" id="menuButton">
+                ☰
+            </button>
+
+            <div>
+                <h1>Analysis</h1>
+                <p class="page-subtitle">
+                    Analyze historical IoT readings and identify patterns.
+                </p>
+            </div>
+
+            <div class="profile">
+               
+            </div>
+
+        </header>
+
+
+        <!-- Content -->
+        <section class="page-content">
+
+            
+            <!-- Date Filters -->
+            <div class="card">
+
+                <div class="card-header">
+                    <div>
+                        <h3>Historical Period</h3>
+                        <p class="muted">
+                            Select the time period for analysis.
+                        </p>
+                    </div>
+                </div>
+
+                <div class="filter-tabs">
+
+                    <button class="filter-tab active" data-range="today">
+                        Today
+                    </button>
+
+                    <button class="filter-tab" data-range="24hours">
+                        Last 24 Hours
+                    </button>
+
+                    <button class="filter-tab" data-range="7days">
+                        Last 7 Days
+                    </button>
+
+                    <button class="filter-tab" data-range="30days">
+                        Last 30 Days
+                    </button>
+
+                    <button class="filter-tab" data-range="custom">
+                        Custom Range
+                    </button>
+
+                </div>
+
+                <div class="field-toolbar">
+                    <label for="analysisFieldSelect">Analyze parameter</label>
+                    <select id="analysisFieldSelect"></select>
+                    <label for="analysisCompareField">Compare with</label>
+                    <select id="analysisCompareField"></select>
+                </div>
+
+            </div>
+
+
+            <!-- Statistical Analysis -->
+            <div class="card">
+
+                <div class="card-header">
+                    <div>
+                        <h3>Statistical Analysis</h3>
+                        <p class="muted">
+                            Statistical summary of selected readings.
+                        </p>
+                    </div>
+                </div>
+
+                <div class="summary-grid">
+
+                    <div class="summary-card">
+                        <span>Minimum</span>
+                        <strong>—</strong>
+                    </div>
+
+                    <div class="summary-card">
+                        <span>Maximum</span>
+                        <strong>—</strong>
+                    </div>
+
+                    <div class="summary-card">
+                        <span>Average</span>
+                        <strong>—</strong>
+                    </div>
+
+                    <div class="summary-card">
+                        <span>Median</span>
+                        <strong>—</strong>
+                    </div>
+
+                    <div class="summary-card">
+                        <span>Std. Deviation</span>
+                        <strong>—</strong>
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <!-- Trend Analysis -->
+            <div class="card">
+
+                <div class="card-header">
+                    <h3>Trend Analysis</h3>
+                </div>
+
+                <div class="three-column-grid">
+
+                    <div class="analysis-box">
+                        <span class="muted">Trend Direction</span>
+                        <div class="analysis-value">—</div>
+                    </div>
+
+                    <div class="analysis-box">
+                        <span class="muted">Rate of Change</span>
+                        <div class="analysis-value">—</div>
+                    </div>
+
+                    <div class="analysis-box">
+                        <span class="muted">Moving Average</span>
+                        <div class="analysis-value">—</div>
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <!-- Threshold Analysis -->
+            <div class="card">
+
+                <div class="card-header">
+                    <h3>Threshold Analysis</h3>
+                </div>
+
+                <div class="empty-state">
+
+                    <div class="empty-icon">📊</div>
+
+                    <h3>No threshold data available</h3>
+
+                    <p>
+                        Threshold analysis will appear after parameter
+                        readings and threshold values are configured.
+                    </p>
+
+                </div>
+
+            </div>
+
+
+            <!-- Anomaly Detection -->
+            <div class="card">
+
+                <div class="card-header">
+                    <h3>Anomaly Detection</h3>
+                </div>
+
+                <div class="empty-state">
+
+                    <div class="empty-icon">⚠</div>
+
+                    <h3>No anomaly data available</h3>
+
+                    <p>
+                        Anomaly detection results will appear when
+                        historical readings are available.
+                    </p>
+
+                </div>
+
+            </div>
+
+
+            <!-- Analysis Chart -->
+            <div class="card">
+
+                <div class="card-header">
+
+                    <div>
+                        <h3>Dynamic Visualizations</h3>
+
+                        <p class="muted">
+                            Charts are generated from the selected parameter and available dataset fields.
+                        </p>
+                    </div>
+
+                </div>
+
+                <div class="chart-container">
+
+                    <div class="chart-empty" id="analysisChartEmpty">
+
+                        No historical data available to display the chart.
+
+                    </div>
+
+                    <canvas
+                        id="analysisTrendChart"
+                        class="hidden">
+                    </canvas>
+
+                </div>
+
+                <div id="analysisAllFields" class="parameter-charts analysis-charts" aria-live="polite"></div>
+
+            </div>
+
+        </section>
+
+    </main>
+
+</div>
+
+
+<script src="../js/navigation.js"></script>
+<script type="module" src="../js/auth.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<script src="../js/charts.js"></script>
+<script type="module" src="../js/analysis.js?v=6"></script>
+
+</body>
+</html>

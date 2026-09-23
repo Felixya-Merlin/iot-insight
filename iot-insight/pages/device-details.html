@@ -1,0 +1,625 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Device Details | IoT Insight</title>
+
+    <link rel="stylesheet" href="../css/main.css">
+    <link rel="stylesheet" href="../css/layout.css">
+    <link rel="stylesheet" href="../css/components.css">
+    <link rel="stylesheet" href="../css/responsive.css">
+
+    <style>
+
+        .device-detail-header {
+            background: #0f172a;
+            color: white;
+            border-radius: 16px;
+            padding: 24px;
+            margin-bottom: 22px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 20px;
+        }
+
+        .device-detail-main {
+            display: flex;
+            align-items: center;
+            gap: 16px;
+        }
+
+        .device-detail-icon {
+            width: 56px;
+            height: 56px;
+            background: rgba(255,255,255,.1);
+            border-radius: 14px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 25px;
+        }
+
+        .device-detail-main h2 {
+            font-size: 22px;
+            margin-bottom: 4px;
+        }
+
+        .device-detail-main p {
+            color: #94a3b8;
+            font-size: 13px;
+        }
+
+        .device-online {
+            display: inline-flex;
+            align-items: center;
+            gap: 7px;
+            padding: 7px 12px;
+            border-radius: 20px;
+            background: rgba(16,185,129,.15);
+            color: #34d399;
+            font-size: 12px;
+            font-weight: 700;
+        }
+
+        .device-online span {
+            width: 7px;
+            height: 7px;
+            border-radius: 50%;
+            background: #34d399;
+        }
+
+        .detail-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+            margin-bottom: 20px;
+        }
+
+        .detail-card {
+            background: white;
+            border: 1px solid #e5e7eb;
+            border-radius: 16px;
+            padding: 22px;
+            box-shadow: 0 3px 15px rgba(15,23,42,.04);
+        }
+
+        .detail-card-header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-bottom: 20px;
+        }
+
+        .detail-card-header h3 {
+            font-size: 16px;
+        }
+
+        .detail-card-header span {
+            font-size: 12px;
+            color: #64748b;
+        }
+
+        .info-list {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 16px;
+        }
+
+        .info-item {
+            padding: 14px;
+            background: #f8fafc;
+            border-radius: 10px;
+        }
+
+        .info-item span {
+            display: block;
+            color: #64748b;
+            font-size: 12px;
+            margin-bottom: 4px;
+        }
+
+        .info-item strong {
+            font-size: 14px;
+            color: #0f172a;
+        }
+
+        .light-status {
+            min-height: 180px;
+            border-radius: 14px;
+            background: #f8fafc;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .light-indicator {
+            width: 76px;
+            height: 76px;
+            border-radius: 50%;
+            background: #e2e8f0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 30px;
+            margin-bottom: 13px;
+        }
+
+        .light-indicator.on {
+            background: #fef3c7;
+            box-shadow: 0 0 30px rgba(245,158,11,.3);
+        }
+
+        .light-status h2 {
+            font-size: 20px;
+            margin-bottom: 3px;
+        }
+
+        .light-status p {
+            font-size: 13px;
+            color: #64748b;
+        }
+
+        .history-card {
+            background: white;
+            border: 1px solid #e5e7eb;
+            border-radius: 16px;
+            padding: 22px;
+            margin-bottom: 20px;
+            box-shadow: 0 3px 15px rgba(15,23,42,.04);
+        }
+
+        .chart-container {
+            position: relative;
+            height: 330px;
+        }
+
+        .analysis-grid {
+            display: grid;
+            grid-template-columns: repeat(5, 1fr);
+            gap: 15px;
+        }
+
+        .analysis-card {
+            border: 1px solid #e5e7eb;
+            border-radius: 12px;
+            padding: 17px;
+            background: #f8fafc;
+        }
+
+        .analysis-card span {
+            display: block;
+            font-size: 12px;
+            color: #64748b;
+            margin-bottom: 7px;
+        }
+
+        .analysis-card strong {
+            font-size: 20px;
+            color: #0f172a;
+        }
+
+        .empty-details {
+            text-align: center;
+            padding: 70px 20px;
+            color: #64748b;
+        }
+
+        .empty-details-icon {
+            font-size: 40px;
+            margin-bottom: 15px;
+        }
+
+        @media (max-width: 1100px) {
+
+            .analysis-grid {
+                grid-template-columns: repeat(3, 1fr);
+            }
+
+        }
+
+        @media (max-width: 800px) {
+
+            .detail-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .device-detail-header {
+                align-items: flex-start;
+                flex-direction: column;
+            }
+
+            .analysis-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+        }
+
+        @media (max-width: 500px) {
+
+            .info-list {
+                grid-template-columns: 1fr;
+            }
+
+            .analysis-grid {
+                grid-template-columns: 1fr;
+            }
+
+        }
+
+    </style>
+
+</head>
+
+
+<body>
+
+<div class="app-layout">
+
+    <!-- SIDEBAR -->
+
+    <aside class="sidebar">
+        <div class="sidebar-logo"><h2>IoT Insight</h2><span>Industrial Monitoring</span></div>
+        <nav class="sidebar-nav">
+            <div class="sidebar-nav-title">Workspace</div>
+            <a href="dashboard.html" class="nav-link"><span class="nav-icon">▦</span><span>Dashboard</span></a>
+            <a href="devices.html" class="nav-link"><span class="nav-icon">▣</span><span>Devices</span></a>
+            <a href="device-details.html" class="nav-link active"><span class="nav-icon">◫</span><span>Device Details</span></a>
+            <a href="parameters.html" class="nav-link"><span class="nav-icon">⌁</span><span>Parameters</span></a>
+            <a href="analysis.html" class="nav-link"><span class="nav-icon">◒</span><span>Analysis</span></a>
+            <a href="alerts.html" class="nav-link"><span class="nav-icon">!</span><span>Alerts</span></a>
+            <a href="reports.html" class="nav-link"><span class="nav-icon">▤</span><span>Reports</span></a>
+            <a href="data-import.html" class="nav-link"><span class="nav-icon">⇧</span><span>Data Import</span></a>
+            <a href="settings.html" class="nav-link"><span class="nav-icon">⚙</span><span>Settings</span></a>
+        </nav>
+
+    </aside>
+
+
+    <!-- MAIN -->
+
+    <main class="main-content">
+
+        <header class="topbar">
+
+            <button class="menu-button mobile-menu">
+                ☰
+            </button>
+
+            <div class="application-name">
+                Device Details
+            </div>
+
+            <div class="topbar-right">
+
+               
+
+            </div>
+
+        </header>
+
+
+        <section class="page-content">
+
+            <div class="page-header">
+
+                <div>
+
+                    <div class="page-title">
+                        Device Details
+                    </div>
+
+                    <div class="page-subtitle">
+                        Monitor device health and parameter activity
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <!-- DEVICE HEADER -->
+
+            <div class="device-detail-header">
+
+                <div class="device-detail-main">
+
+                    <div class="device-detail-icon">
+                        ▣
+                    </div>
+
+                    <div>
+
+                        <h2 id="deviceDetailName">
+                            No Device Selected
+                        </h2>
+
+                        <p id="deviceDetailId">
+                            Select a device from the device registry
+                        </p>
+
+                    </div>
+
+                </div>
+
+
+                <div class="device-online" id="deviceConnectionStatus">
+
+                    <span></span>
+                    Online
+
+                </div>
+
+            </div>
+
+
+            <!-- DEVICE INFORMATION + LIGHT STATUS -->
+
+            <div class="detail-grid">
+
+                <div class="detail-card">
+
+                    <div class="detail-card-header">
+
+                        <h3>
+                            Device Information
+                        </h3>
+
+                        <span>
+                            Configuration
+                        </span>
+
+                    </div>
+
+
+                    <div class="info-list">
+
+                        <div class="info-item">
+
+                            <span>
+                                Device ID
+                            </span>
+
+                            <strong id="detailDeviceId">
+                                —
+                            </strong>
+
+                        </div>
+
+
+                        <div class="info-item">
+
+                            <span>
+                                Location
+                            </span>
+
+                            <strong id="detailDeviceLocation">
+                                —
+                            </strong>
+
+                        </div>
+
+
+                        <div class="info-item">
+
+                            <span>
+                                Parameter
+                            </span>
+
+                            <strong>
+                                Light
+                            </strong>
+
+                        </div>
+
+
+                        <div class="info-item">
+
+                            <span>
+                                Data Type
+                            </span>
+
+                            <strong>
+                                Binary 0 / 1
+                            </strong>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+
+                <!-- LIGHT -->
+
+                <div class="detail-card">
+
+                    <div class="detail-card-header">
+
+                        <h3>
+                            Current Light Status
+                        </h3>
+
+                        <span>
+                            Live Reading
+                        </span>
+
+                    </div>
+
+
+                    <div class="light-status">
+
+                        <div
+                            class="light-indicator"
+                            id="lightIndicator"
+                        >
+                            💡
+                        </div>
+
+                        <h2 id="lightState">
+                            Unknown
+                        </h2>
+
+                        <p id="lightValue">
+                            Waiting for reading...
+                        </p>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <!-- READING HISTORY -->
+
+            <div class="history-card">
+
+                <div class="detail-card-header">
+
+                    <h3>
+                        Light Reading History
+                    </h3>
+
+                    <span>
+                        0 = OFF &nbsp; | &nbsp; 1 = ON
+                    </span>
+
+                </div>
+
+
+                <div class="chart-container">
+
+                    <canvas id="readingHistoryChart"></canvas>
+
+                </div>
+
+                <div
+                    class="empty-details"
+                    id="readingHistoryEmpty"
+                >
+
+                    <div class="empty-details-icon">
+                        ◒
+                    </div>
+
+                    <p>
+                        Reading history will appear when device data
+                        is available.
+                    </p>
+
+                </div>
+
+            </div>
+
+
+            <!-- ANALYSIS -->
+
+            <div class="history-card">
+
+                <div class="detail-card-header">
+
+                    <h3>
+                        Device Analysis
+                    </h3>
+
+                    <span>
+                        Computed from readings
+                    </span>
+
+                </div>
+
+
+                <div class="analysis-grid">
+
+                    <div class="analysis-card">
+
+                        <span>
+                            Total Readings
+                        </span>
+
+                        <strong id="totalReadings">
+                            0
+                        </strong>
+
+                    </div>
+
+
+                    <div class="analysis-card">
+
+                        <span>
+                            ON Count
+                        </span>
+
+                        <strong id="onCount">
+                            0
+                        </strong>
+
+                    </div>
+
+
+                    <div class="analysis-card">
+
+                        <span>
+                            OFF Count
+                        </span>
+
+                        <strong id="offCount">
+                            0
+                        </strong>
+
+                    </div>
+
+
+                    <div class="analysis-card">
+
+                        <span>
+                            ON Percentage
+                        </span>
+
+                        <strong id="onPercentage">
+                            0%
+                        </strong>
+
+                    </div>
+
+
+                    <div class="analysis-card">
+
+                        <span>
+                            Status Changes
+                        </span>
+
+                        <strong id="statusChanges">
+                            0
+                        </strong>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </section>
+
+    </main>
+
+</div>
+
+
+<script src="../js/navigation.js"></script>
+<script type="module" src="../js/auth.js"></script>
+
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+<script src="../js/charts.js"></script>
+<script type="module" src="../js/device-details.js?v=4"></script>
+
+</body>
+
+</html>

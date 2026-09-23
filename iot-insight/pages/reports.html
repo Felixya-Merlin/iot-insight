@@ -1,0 +1,302 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
+
+    <title>Reports | IoT Insight</title>
+
+    <link rel="stylesheet" href="../css/main.css">
+    <link rel="stylesheet" href="../css/layout.css">
+    <link rel="stylesheet" href="../css/components.css">
+    <link rel="stylesheet" href="../css/responsive.css">
+    <link rel="stylesheet" href="../css/dashboard-shell.css">
+
+</head>
+
+<body>
+
+<div class="app-layout">
+
+
+    <!-- Sidebar -->
+    <aside class="sidebar" id="sidebar">
+
+        <div class="sidebar-logo">
+
+            <h2>IoT Insight</h2>
+
+            <span>Industrial Analytics</span>
+
+        </div>
+
+
+        <nav class="sidebar-nav">
+
+            <a href="dashboard.html">Dashboard</a>
+
+            <a href="devices.html">Devices</a>
+
+            <a href="parameters.html">Parameters</a>
+
+            <a href="analysis.html">Analysis</a>
+
+            <a href="alerts.html">Alerts</a>
+
+            <a href="reports.html" class="nav-link active">
+                Reports
+            </a>
+
+            <a href="data-import.html" class="nav-link"><span class="nav-icon">⇧</span><span>Data Import</span></a>
+
+            <a href="settings.html">Settings</a>
+
+        </nav>
+
+    </aside>
+
+
+    <!-- Main -->
+    <main class="main-content">
+
+
+        <header class="topbar">
+
+            <button class="menu-button" id="menuButton">
+                ☰
+            </button>
+
+
+            <div>
+
+                <h1>Reports</h1>
+
+                <p class="page-subtitle">
+                    Generate reports from historical IoT data.
+                </p>
+
+            </div>
+
+
+            <div class="profile">
+               
+            </div>
+
+        </header>
+
+
+        <section class="page-content">
+
+           
+
+            <!-- Report Configuration -->
+            <div class="card">
+
+                <div class="card-header">
+
+                    <div>
+
+                        <h3>Report Configuration</h3>
+
+                        <p class="muted">
+                            Select the data required for the report.
+                        </p>
+
+                    </div>
+
+                </div>
+
+
+                <form id="reportForm">
+
+
+                    <div class="form-grid">
+
+
+                        <!-- Device -->
+                        <div class="form-group">
+
+                            <label for="reportDevice">
+                                Device
+                            </label>
+
+                            <select id="reportDevice">
+
+                                <option value="">
+                                    Select Device
+                                </option>
+
+                            </select>
+
+                        </div>
+
+
+                        <!-- Parameter -->
+                        <div class="form-group">
+
+                            <label for="reportParameter">
+                                Parameter
+                            </label>
+
+                            <select id="reportParameter">
+
+                                <option value="">
+                                    Select Parameter
+                                </option>
+
+                            </select>
+
+                        </div>
+
+
+                        <!-- Start -->
+                        <div class="form-group">
+
+                            <label for="startDate">
+                                Start Date
+                            </label>
+
+                            <input
+                                type="date"
+                                id="startDate">
+
+                        </div>
+
+
+                        <!-- End -->
+                        <div class="form-group">
+
+                            <label for="endDate">
+                                End Date
+                            </label>
+
+                            <input
+                                type="date"
+                                id="endDate">
+
+                        </div>
+
+
+                        <!-- Report Type -->
+                        <div class="form-group">
+
+                            <label for="reportType">
+                                Report Type
+                            </label>
+
+                            <select id="reportType">
+
+                                <option value="summary">
+                                    Summary
+                                </option>
+
+                                <option value="detailed">
+                                    Detailed Analysis
+                                </option>
+
+                                <option value="anomaly">
+                                    Anomaly Report
+                                </option>
+
+                            </select>
+
+                        </div>
+
+
+                    </div>
+
+
+                    <div class="form-actions">
+
+                        <button
+                            type="submit"
+                            class="btn btn-primary">
+
+                            Generate Report
+
+                        </button>
+
+                        <button type="button" id="downloadPdf" class="btn btn-secondary">Download PDF</button>
+                        <button type="button" id="downloadCsv" class="btn btn-secondary">Download CSV</button>
+
+                    </div>
+
+
+                </form>
+
+                <fieldset class="report-sections">
+                    <legend>Include in report</legend>
+                    <label><input type="checkbox" name="reportSection" value="summary" checked> Executive summary</label>
+                    <label><input type="checkbox" name="reportSection" value="devices" checked> Device overview</label>
+                    <label><input type="checkbox" name="reportSection" value="parameters" checked> Parameter statistics</label>
+                    <label><input type="checkbox" name="reportSection" value="visualizations" checked> Visualizations and trends</label>
+                    <label><input type="checkbox" name="reportSection" value="alerts" checked> Alert history</label>
+                    <label><input type="checkbox" name="reportSection" value="insights" checked> Generated insights</label>
+                </fieldset>
+
+                <fieldset class="report-sections" id="reportGraphs">
+                    <legend>Include graphs <span class="muted">(untick graphs you do not need)</span></legend>
+                    <div class="muted">Available graphs will appear after the dataset loads.</div>
+                </fieldset>
+
+
+                <div
+                    id="reportMessage"
+                    class="page-message hidden">
+
+                </div>
+
+            </div>
+
+
+            <!-- Report Preview -->
+            <div class="card">
+
+                <div class="card-header">
+
+                    <div>
+
+                        <h3>Report Preview</h3>
+
+                        <p class="muted">
+                            Generated report information, analysis, and charts will appear here.
+                        </p>
+
+                    </div>
+
+                </div>
+
+
+                <div class="empty-state" id="reportPreview" contenteditable="true">
+
+                    <div class="empty-icon">
+                        📄
+                    </div>
+
+                    <h3>No report generated</h3>
+
+                    <p>
+                        Configure the report options and generate
+                        a report when data becomes available.
+                    </p>
+
+                </div>
+
+            </div>
+
+        </section>
+
+    </main>
+
+</div>
+
+
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<script src="../js/navigation.js"></script>
+<script type="module" src="../js/auth.js"></script>
+<script type="module" src="../js/reports.js?v=5"></script>
+
+</body>
+</html>

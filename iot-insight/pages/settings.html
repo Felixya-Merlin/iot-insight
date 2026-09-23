@@ -1,0 +1,360 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0">
+
+    <title>Settings | IoT Insight</title>
+
+    <link rel="stylesheet" href="../css/main.css">
+    <link rel="stylesheet" href="../css/layout.css">
+    <link rel="stylesheet" href="../css/components.css">
+    <link rel="stylesheet" href="../css/responsive.css">
+    <link rel="stylesheet" href="../css/dashboard-shell.css">
+
+</head>
+
+
+<body>
+
+<div class="app-layout">
+
+
+    <!-- Sidebar -->
+    <aside class="sidebar" id="sidebar">
+
+        <div class="sidebar-logo">
+
+            <h2>IoT Insight</h2>
+
+            <span>Industrial Analytics</span>
+
+        </div>
+
+
+        <nav class="sidebar-nav">
+
+            <a href="dashboard.html">
+                Dashboard
+            </a>
+
+            <a href="devices.html">
+                Devices
+            </a>
+
+            <a href="parameters.html">
+                Parameters
+            </a>
+
+            <a href="analysis.html">
+                Analysis
+            </a>
+
+            <a href="alerts.html">
+                Alerts
+            </a>
+
+            <a href="reports.html">
+                Reports
+            </a>
+
+            <a href="data-import.html" class="nav-link"><span class="nav-icon">⇧</span><span>Data Import</span></a>
+
+            <a href="settings.html" class="nav-link active">
+                Settings
+            </a>
+
+        </nav>
+
+    </aside>
+
+
+    <!-- Main -->
+    <main class="main-content">
+
+
+        <!-- Header -->
+        <header class="topbar">
+
+            <button class="menu-button" id="menuButton">
+                ☰
+            </button>
+
+
+            <div>
+
+                <h1>Settings</h1>
+
+                <p class="page-subtitle">
+                    Configure application and monitoring preferences.
+                </p>
+
+            </div>
+
+
+            <div class="profile">
+               
+            </div>
+
+        </header>
+
+
+        <section class="page-content">
+
+           
+
+
+            <!-- Application Settings -->
+            <div class="card">
+
+                <div class="card-header">
+
+                    <div>
+
+                        <h3>Application Settings</h3>
+
+                        <p class="muted">
+                            General application configuration.
+                        </p>
+
+                    </div>
+
+                </div>
+
+
+                <div class="form-grid">
+
+
+                    <div class="form-group">
+
+                        <label for="applicationName">
+                            Application Name
+                        </label>
+
+                        <input
+                            type="text"
+                            id="applicationName"
+                            value="IoT Insight">
+
+                    </div>
+
+
+                    <div class="form-group">
+
+                        <label for="timezone">
+                            Time Zone
+                        </label>
+
+                        <select id="timezone">
+
+                            <option value="IST">
+                                India Standard Time (IST)
+                            </option>
+
+                            <option value="UTC">
+                                UTC
+                            </option>
+
+                        </select>
+
+                    </div>
+
+
+                    <div class="form-group">
+
+                        <label for="dateFormat">
+                            Date Format
+                        </label>
+
+                        <select id="dateFormat">
+
+                            <option value="DD-MM-YYYY">
+                                DD-MM-YYYY
+                            </option>
+
+                            <option value="YYYY-MM-DD">
+                                YYYY-MM-DD
+                            </option>
+
+                            <option value="MM-DD-YYYY">
+                                MM-DD-YYYY
+                            </option>
+
+                        </select>
+
+                    </div>
+
+
+                </div>
+
+            </div>
+
+
+            <!-- Threshold Settings -->
+            <div class="card">
+
+                <div class="card-header">
+
+                    <div>
+
+                        <h3>Threshold Settings</h3>
+
+                        <p class="muted">
+                            Default threshold behavior for monitoring.
+                        </p>
+
+                    </div>
+
+                </div>
+
+
+                <div class="alert-box">
+
+                    Threshold values should be configured for
+                    individual parameters from the Parameters page.
+
+                </div>
+
+            </div>
+
+
+            <!-- Notification Settings -->
+            <div class="card">
+
+                <div class="card-header">
+
+                    <div>
+
+                        <h3>Notification Settings</h3>
+
+                        <p class="muted">
+                            Control monitoring notifications.
+                        </p>
+
+                    </div>
+
+                </div>
+
+
+                <!-- Alert Notifications -->
+                <div class="setting-row">
+
+                    <div>
+
+                        <strong>
+                            Alert Notifications
+                        </strong>
+
+                        <p class="muted">
+                            Notify when parameter thresholds are exceeded.
+                        </p>
+
+                    </div>
+
+                    <label class="switch">
+
+                        <input
+                            type="checkbox"
+                            id="alertNotifications">
+
+                        <span class="slider"></span>
+
+                    </label>
+
+                </div>
+
+
+                <!-- Anomaly Notifications -->
+                <div class="setting-row">
+
+                    <div>
+
+                        <strong>
+                            Anomaly Notifications
+                        </strong>
+
+                        <p class="muted">
+                            Notify when unusual readings are detected.
+                        </p>
+
+                    </div>
+
+                    <label class="switch">
+
+                        <input
+                            type="checkbox"
+                            id="anomalyNotifications">
+
+                        <span class="slider"></span>
+
+                    </label>
+
+                </div>
+
+
+                <!-- Device Offline -->
+                <div class="setting-row">
+
+                    <div>
+
+                        <strong>
+                            Device Offline Notifications
+                        </strong>
+
+                        <p class="muted">
+                            Notify when an IoT device stops reporting.
+                        </p>
+
+                    </div>
+
+                    <label class="switch">
+
+                        <input
+                            type="checkbox"
+                            id="offlineNotifications">
+
+                        <span class="slider"></span>
+
+                    </label>
+
+                </div>
+
+
+                <div class="form-actions">
+
+                    <button
+                        id="saveSettings"
+                        class="btn btn-primary">
+
+                        Save Settings
+
+                    </button>
+
+                </div>
+
+
+                <div
+                    id="settingsMessage"
+                    class="page-message hidden">
+
+                </div>
+
+            </div>
+
+        </section>
+
+    </main>
+
+</div>
+
+
+<script src="../js/navigation.js"></script>
+<script type="module" src="../js/auth.js"></script>
+<script src="../js/settings.js"></script>
+
+</body>
+</html>

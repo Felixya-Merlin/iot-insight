@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>IoT Insight | Help</title>
+    <link rel="stylesheet" href="../css/product.css">
+</head>
+<body class="product-page">
+    <div class="product-shell">
+        <header class="product-header">
+            <div class="brand"><span class="brand-mark"></span> IoT Insight</div>
+            <nav class="product-nav" aria-label="Main navigation">
+                <a href="home.html">Home</a>
+                <a href="platform.html">Platform</a>
+                <a href="help.html">Help</a>
+                <a href="about.html">About</a>
+            </nav>
+            <div class="product-actions">
+                <a class="btn secondary" href="../index.html">Sign In</a>
+                <a class="btn primary" href="signup.html">Get Started</a>
+            </div>
+        </header>
+
+        <main class="section">
+            <div class="section-header two-col-intro">
+                <div>
+                    <div class="eyebrow">Help Center</div>
+                    <h2>Help the user to use this website</h2>
+                    <p>Everything you need to know to open the dashboard, import data, monitor devices, and understand your sensor workflow clearly and quickly.</p>
+                </div>
+                <div class="hero-mini-image">
+                    <img src="https://images.unsplash.com/photo-1522202176988-66273c2fd55f?auto=format&fit=crop&w=1200&q=80" alt="Customer support and onboarding">
+                </div>
+            </div>
+
+            <div class="feature-grid feature-shell">
+                <article class="feature-card">
+                    <h3>1. Sign in</h3>
+                    <p>Use your account to access the dashboard and secure monitoring workspace.</p>
+                </article>
+                <article class="feature-card">
+                    <h3>2. Import data</h3>
+                    <p>Upload CSV files or connect your sensor sources from the Data Import screen.</p>
+                </article>
+                <article class="feature-card">
+                    <h3>3. Review insights</h3>
+                    <p>Open dashboards, alerts, reports, and analysis to understand device activity.</p>
+                </article>
+            </div>
+
+            <div class="accordion" aria-label="Help topics">
+                <div class="accordion-item">
+                    <button class="accordion-button" type="button">How do I import IoT data?<span>+</span></button>
+                    <div class="accordion-panel"><p>Use the Data Import page to upload CSV data or connect a ThingSpeak channel, preview the rows, and save the data to your workspace.</p></div>
+                </div>
+                <div class="accordion-item">
+                    <button class="accordion-button" type="button">How do I connect ThingSpeak?<span>+</span></button>
+                    <div class="accordion-panel"><p>Provide your channel information and read API details on the import page, then validate the readings before saving the dataset.</p></div>
+                </div>
+                <div class="accordion-item">
+                    <button class="accordion-button" type="button">How is data stored?<span>+</span></button>
+                    <div class="accordion-panel"><p>Device and sensor readings are stored in Firebase to maintain reliable access, history, and dashboard performance.</p></div>
+                </div>
+                <div class="accordion-item">
+                    <button class="accordion-button" type="button">How do I view sensor trends?<span>+</span></button>
+                    <div class="accordion-panel"><p>Open the Dashboard or Analysis view, choose a parameter, and inspect trend changes over time.</p></div>
+                </div>
+                <div class="accordion-item">
+                    <button class="accordion-button" type="button">What is an anomaly?<span>+</span></button>
+                    <div class="accordion-panel"><p>An anomaly is a reading or pattern outside the normal expected range, helping you detect issues before they become major problems.</p></div>
+                </div>
+                <div class="accordion-item">
+                    <button class="accordion-button" type="button">How do alerts work?<span>+</span></button>
+                    <div class="accordion-panel"><p>The Alerts page highlights unusual readings and threshold-based events so the right team can respond quickly.</p></div>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <script>
+        const buttons = document.querySelectorAll('.accordion-button');
+        buttons.forEach(button => {
+            button.addEventListener('click', () => {
+                const panel = button.nextElementSibling;
+                const isOpen = button.classList.contains('open');
+                buttons.forEach(item => {
+                    item.classList.remove('open');
+                    item.nextElementSibling.style.maxHeight = null;
+                    item.querySelector('span').textContent = '+';
+                });
+                if (!isOpen) {
+                    button.classList.add('open');
+                    panel.style.maxHeight = panel.scrollHeight + 'px';
+                    button.querySelector('span').textContent = '−';
+                }
+            });
+        });
+    </script>
+</body>
+</html>

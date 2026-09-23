@@ -1,0 +1,118 @@
+/* =========================================================
+   IoT INSIGHT — RESPONSIVE
+   ========================================================= */
+
+
+@media (max-width: 1200px) {
+
+    .page-content {
+        padding: 24px;
+    }
+
+    .stats-grid {
+        grid-template-columns:
+            repeat(2, 1fr);
+    }
+
+}
+
+
+@media (max-width: 900px) {
+
+    .sidebar {
+        transform: translateX(-100%);
+    }
+
+    .sidebar.open {
+        transform: translateX(0);
+    }
+
+    .main-content {
+        margin-left: 0;
+
+        width: 100%;
+    }
+
+    .menu-button {
+        display: block;
+    }
+
+    .topbar {
+        padding: 0 20px;
+    }
+
+    .content-grid {
+        grid-template-columns: 1fr;
+    }
+
+}
+
+
+@media (max-width: 650px) {
+
+    .page-content {
+        padding: 18px 15px;
+    }
+
+    .topbar {
+        padding: 0 15px;
+    }
+
+    .header-title h2 {
+        font-size: 15px;
+    }
+
+    .header-title p {
+        display: none;
+    }
+
+    .header-right {
+        gap: 8px;
+    }
+
+    .system-status {
+        display: none;
+    }
+
+    .user-info {
+        display: none;
+    }
+
+    .stats-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .content-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .trend-summary {
+        grid-template-columns: 1fr;
+    }
+
+    .insight-content {
+        grid-template-columns: 1fr;
+    }
+
+}
+
+
+@media (max-width: 450px) {
+
+    .page-heading h1 {
+        font-size: 21px;
+    }
+
+    .page-heading p {
+        font-size: 11px;
+    }
+
+    .card-header {
+        padding: 15px;
+    }
+
+    .card-body {
+        padding: 15px;
+    }
+
+}

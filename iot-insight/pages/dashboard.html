@@ -1,0 +1,729 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <title>Dashboard | IoT Insight</title>
+
+    <link rel="stylesheet" href="../css/main.css">
+    <link rel="stylesheet" href="../css/layout.css">
+    <link rel="stylesheet" href="../css/components.css">
+    <link rel="stylesheet" href="../css/responsive.css">
+    <link rel="stylesheet" href="../css/dashboard-shell.css">
+
+</head>
+
+<body>
+
+<div class="app-layout">
+
+    <!-- =====================================================
+         SIDEBAR
+    ====================================================== -->
+
+    <aside class="sidebar">
+
+        <div class="sidebar-logo">
+
+            <h2>IoT Insight</h2>
+
+            <span>
+                Industrial Monitoring
+            </span>
+
+        </div>
+
+
+        <nav class="sidebar-nav">
+
+            <div class="sidebar-nav-title">
+                Workspace
+            </div>
+
+
+            <a href="dashboard.html" class="nav-link active">
+
+                <span class="nav-icon">▦</span>
+
+                <span>Dashboard</span>
+
+            </a>
+
+
+            <a href="devices.html" class="nav-link">
+
+                <span class="nav-icon">▣</span>
+
+                <span>Devices</span>
+
+            </a>
+
+
+            <a href="device-details.html" class="nav-link">
+
+                <span class="nav-icon">◫</span>
+
+                <span>Device Details</span>
+
+            </a>
+
+
+            <a href="parameters.html" class="nav-link">
+
+                <span class="nav-icon">⌁</span>
+
+                <span>Parameters</span>
+
+            </a>
+
+
+            <a href="analysis.html" class="nav-link">
+
+                <span class="nav-icon">◒</span>
+
+                <span>Analysis</span>
+
+            </a>
+
+
+            <a href="alerts.html" class="nav-link">
+
+                <span class="nav-icon">!</span>
+
+                <span>Alerts</span>
+
+            </a>
+
+
+            <a href="reports.html" class="nav-link">
+
+                <span class="nav-icon">▤</span>
+
+                <span>Reports</span>
+
+            </a>
+
+
+            <a href="data-import.html" class="nav-link"><span class="nav-icon">⇧</span><span>Data Import</span></a>
+<!-- 
+            <a href="settings.html" class="nav-link">
+
+                <span class="nav-icon">⚙</span>
+
+                <span>Settings</span>
+
+            </a> -->
+
+        </nav>
+
+
+        <div class="sidebar-footer">
+
+            <p>IoT Insight v1.0</p>
+
+        </div>
+
+    </aside>
+
+
+
+    <!-- =====================================================
+         MAIN
+    ====================================================== -->
+
+    <main class="main-content">
+
+
+        <!-- =================================================
+             TOP HEADER
+        ================================================== -->
+
+        <header class="topbar">
+
+            <div style="display:flex;align-items:center;gap:15px;">
+
+                <button
+                    class="menu-button"
+                    id="menuButton"
+                    aria-label="Open menu"
+                >
+                    ☰
+                </button>
+
+                <div class="header-title">
+                    <h2 id="dashboardGreeting">Iot Insight</h2>
+                    <p>IoT Insight Analytics Platform</p>
+                </div>
+
+            </div>
+
+        </header>
+
+
+
+        <!-- =================================================
+             PAGE CONTENT
+        ================================================== -->
+<!-- 
+        <section class="page-content">
+
+            <div class="dashboard-shell-hero">
+                <div class="hero-content">
+                    <span class="eyebrow-label">Live operations</span>
+                    <h2>Connected infrastructure overview</h2>
+                    <p>Monitor devices, sensor parameters, and industrial activity with a single operational view.</p>
+                    <div class="hero-stat-list">
+                        <span>128 devices</span>
+                        <span>99.4% uptime</span>
+                        <span>9 alerts</span>
+                    </div>
+                </div>
+                <div class="hero-visual">
+                    <img src="https://images.unsplash.com/photo-1558494949-ef010cbdcc31?auto=format&fit=crop&w=1200&q=80" alt="Connected industrial devices">
+                </div>
+            </div> -->
+
+            <!-- =================================================
+                 DATA CONNECTION STATUS
+            ================================================== -->
+
+            <div class="dashboard-status">
+
+                <div class="dashboard-status-left">
+
+                    <div class="connection-icon">
+                        ◉
+                    </div>
+
+                    <div>
+
+                        <strong>
+                            IoT Data Connection
+                        </strong>
+
+                        <span>
+                            Waiting for imported Firebase data
+                        </span>
+
+                    </div>
+
+                </div>
+
+
+                <div class="connection-state">
+
+                    <span class="connection-dot"></span>
+
+                    Waiting for Data
+
+                </div>
+
+            </div>
+
+
+
+            <!-- =================================================
+                 KPI CARDS
+            ================================================== -->
+
+            <div class="stats-grid">
+
+
+                <!-- DEVICE -->
+
+                <div class="stat-card dashboard-stat">
+
+                    <div class="stat-card-top">
+
+                        <div>
+
+                            <div class="stat-label">
+                                Connected Devices
+                            </div>
+
+                            <div class="stat-value">
+                                0
+                            </div>
+
+                        </div>
+
+                        <div class="stat-icon">
+                            ▣
+                        </div>
+
+                    </div>
+
+                    <div class="stat-change">
+                                        No imported devices
+                    </div>
+
+                </div>
+
+
+
+                <!-- PARAMETERS -->
+
+                <div class="stat-card dashboard-stat">
+
+                    <div class="stat-card-top">
+
+                        <div>
+
+                            <div class="stat-label">
+                                Active Parameters
+                            </div>
+
+                            <div class="stat-value">
+                             
+                            </div>
+
+                        </div>
+
+                        <div class="stat-icon">
+                            ⌁
+                        </div>
+
+                    </div>
+
+                    <div class="stat-change positive">
+                       
+                    </div>
+
+                </div>
+
+
+
+                <!-- READINGS -->
+
+                <div class="stat-card dashboard-stat">
+
+                    <div class="stat-card-top">
+
+                        <div>
+
+                            <div class="stat-label">
+                                Readings Received
+                            </div>
+
+                            <div class="stat-value">
+                                0
+                            </div>
+
+                        </div>
+
+                        <div class="stat-icon">
+                            ↗
+                        </div>
+
+                    </div>
+
+                    <div class="stat-change warning">
+                        Waiting for data
+                    </div>
+
+                </div>
+
+
+
+                <!-- ALERTS -->
+
+                <div class="stat-card dashboard-stat">
+
+                    <div class="stat-card-top">
+
+                        <div>
+
+                            <div class="stat-label">
+                                Active Alerts
+                            </div>
+
+                            <div class="stat-value">
+                                0
+                            </div>
+
+                        </div>
+
+                        <div class="stat-icon alert-stat-icon">
+                            !
+                        </div>
+
+                    </div>
+
+                    <div class="stat-change positive">
+                        No active alerts
+                    </div>
+
+                </div>
+
+            </div>
+
+
+
+            <!-- =================================================
+                 MAIN MONITORING AREA
+            ================================================== -->
+
+            <div class="content-grid">
+
+
+                <!-- =================================================
+                     PARAMETER TREND
+                ================================================== -->
+
+                <div class="card">
+
+                    <div class="card-header">
+
+                        <div>
+
+                                <div class="card-title">
+                                Sensor Field Trends
+                            </div>
+
+                            <div class="card-subtitle">
+                                Active dataset readings over time
+                            </div>
+
+                        </div>
+
+
+                        <span class="monitor-badge">
+
+                            ● Live
+
+                        </span>
+
+                    </div>
+
+
+                    <div class="card-body">
+
+                        <div class="trend-summary">
+
+                            <div>
+
+                                <span>
+                                    Current State
+                                </span>
+
+                                <strong id="currentLightState">
+                                    --
+                                </strong>
+
+                            </div>
+
+
+                            <div>
+
+                                <span>
+                                    Latest Reading
+                                </span>
+
+                                <strong id="latestReading">
+                                    --
+                                </strong>
+
+                            </div>
+
+
+                            <div>
+
+                                <span>
+                                    Last Updated
+                                </span>
+
+                                <strong id="lastUpdated">
+                                    --
+                                </strong>
+
+                            </div>
+
+                        </div>
+
+
+                        <div class="chart-container">
+
+                            <canvas id="lightTrendChart"></canvas>
+
+                            <div
+                                class="chart-empty"
+                                id="chartEmpty"
+                            >
+
+                                <div>
+
+                                    <div class="chart-empty-icon">
+                                        ◌
+                                    </div>
+
+                                    <strong>
+                                        No sensor readings yet
+                                    </strong>
+
+                                    <p>
+                                        Parameter trends will appear here
+                                        when data is received.
+                                    </p>
+
+                                </div>
+
+                            </div>
+
+                        </div>
+
+                        <div class="field-toolbar"><label for="dashboardFieldSelect">Visualization field</label><select id="dashboardFieldSelect"><option value="">All parameters</option></select></div>
+                    </div>
+
+                </div>
+
+
+
+                <!-- =================================================
+                     CURRENT STATUS
+                ================================================== -->
+
+                <div class="card">
+
+                    <div class="card-header">
+
+                        <div>
+
+                            <div class="card-title">
+                                Current Status
+                            </div>
+
+                            <div class="card-subtitle">
+                                Latest device condition
+                            </div>
+
+                        </div>
+
+                    </div>
+
+
+                    <div class="card-body">
+
+                        <div class="current-status-box">
+
+
+                            <div class="current-status-icon">
+                                💡
+                            </div>
+
+
+                            <div class="current-status-content">
+
+                                <span>
+                                    Light
+                                </span>
+
+                                <strong id="lightStatus">
+                                        No imported data
+                                </strong>
+
+                            </div>
+
+                        </div>
+
+
+                        <div class="status-details">
+
+
+                            <div class="status-detail">
+
+                                <span>
+                                    Device
+                                </span>
+
+                                <strong>
+                                    --
+                                </strong>
+
+                            </div>
+
+
+                            <div class="status-detail">
+
+                                <span>
+                                    Parameter
+                                </span>
+
+                                <strong>
+                                    Light
+                                </strong>
+
+                            </div>
+
+
+                            <div class="status-detail">
+
+                                <span>
+                                    Value
+                                </span>
+
+                                <strong id="lightValue">
+                                    --
+                                </strong>
+
+                            </div>
+
+
+                            <div class="status-detail">
+
+                                <span>
+                                    Updated
+                                </span>
+
+                                <strong id="statusUpdated">
+                                    --
+                                </strong>
+
+                            </div>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+
+
+            <!-- =================================================
+                 LOWER SECTION
+            ================================================== -->
+
+            <div class="content-grid dashboard-lower-grid">
+
+
+                <!-- DEVICE HEALTH -->
+
+                <div class="card">
+
+                    <div class="card-header">
+
+                        <div>
+
+                            <div class="card-title">
+                                Device Health
+                            </div>
+
+                            <div class="card-subtitle">
+                                Connected IoT devices
+                            </div>
+
+                        </div>
+
+                        <a
+                            href="devices.html"
+                            class="view-link"
+                        >
+                            View all →
+                        </a>
+
+                    </div>
+
+
+                    <div class="card-body">
+
+                        <div class="device-empty">
+
+                            <div class="device-empty-icon">
+                                ▣
+                            </div>
+
+                            <strong>
+                                        No imported devices
+                            </strong>
+
+                            <p>
+                                Connect an IoT device to start
+                                monitoring sensor readings.
+                            </p>
+
+                            <a
+                                href="devices.html"
+                                class="btn btn-primary"
+                            >
+                                Add Device
+                            </a>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+
+
+                <!-- RECENT ACTIVITY -->
+
+                <div class="card">
+
+                    <div class="card-header">
+
+                        <div>
+
+                            <div class="card-title">
+                                Recent Activity
+                            </div>
+
+                            <div class="card-subtitle">
+                                Latest system events
+                            </div>
+
+                        </div>
+
+                    </div>
+
+
+                    <div class="card-body">
+
+                        <div class="activity-empty">
+
+                            <div class="activity-empty-icon">
+                                ◷
+                            </div>
+
+                            <strong>
+                                No recent activity
+                            </strong>
+
+                            <p>
+                                Device and sensor events
+                                will appear here.
+                            </p>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+
+
+        </section>
+
+    </main>
+
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<script src="../js/navigation.js"></script>
+<script type="module" src="../js/auth.js"></script>
+<script src="../js/charts.js"></script>
+<script src="../js/dashboard-shell.js"></script>
+<script type="module" src="../js/dashboard.js?v=5"></script>
+
+</body>
+
+</html>

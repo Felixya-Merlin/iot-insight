@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Create Account | IoT Insight</title>
+    <link rel="stylesheet" href="../css/auth.css">
+</head>
+
+<body>
+    <div class="auth-page" id="authPage">
+        <div class="sky-glow"></div>
+        <div class="sun" id="sun"></div>
+        <div class="stars"></div>
+        <div class="mountains mountain-back"></div>
+        <div class="mountains mountain-front"></div>
+        <div class="moon" id="moon"></div>
+
+        <header class="auth-header">
+            <div class="logo">IoT<span>Insight</span></div>
+           
+            <div class="status">
+                <span></span>
+                System Online
+            </div>
+        </header>
+
+        <main class="auth-container">
+            <div class="glass-card signup-card">
+                <div class="card-header">
+                    <div class="small-title">SENSOR INTELLIGENCE WORKSPACE</div>
+                    <h1>Create Account</h1>
+                    <p>Create your account and start monitoring your IoT data.</p>
+                </div>
+
+                <form id="signupForm">
+                    <div class="input-group">
+                        <label for="signupName">Full Name</label>
+                        <div class="input-wrapper">
+                            <span class="input-icon">👤</span>
+                            <input type="text" id="signupName" placeholder="Enter your name" required>
+                        </div>
+                    </div>
+
+                    <div class="input-group">
+                        <label for="signupEmail">Email Address</label>
+                        <div class="input-wrapper">
+                            <span class="input-icon">✉</span>
+                            <input type="email" id="signupEmail" placeholder="Enter your email" required>
+                        </div>
+                    </div>
+
+                    <div class="input-group">
+                        <label for="signupPassword">Password</label>
+                        <div class="input-wrapper">
+                            <span class="input-icon">🔒</span>
+                            <input type="password" id="signupPassword" placeholder="Create a password" required>
+                            <button type="button" class="password-toggle" id="toggleSignupPassword">👁</button>
+                        </div>
+                    </div>
+
+                    <div class="password-strength">
+                        <div class="strength-bar"><span id="strengthBar"></span></div>
+                        <small id="strengthText">Password strength</small>
+                    </div>
+
+                    <div class="input-group">
+                        <label for="confirmPassword">Confirm Password</label>
+                        <div class="input-wrapper">
+                            <span class="input-icon">🔒</span>
+                            <input type="password" id="confirmPassword" placeholder="Confirm your password" required>
+                        </div>
+                    </div>
+
+                    <label class="terms">
+                        <input type="checkbox" id="terms" required>
+                        <span>I agree to the <a href="#">Terms &amp; Conditions</a></span>
+                    </label>
+
+                    <button type="submit" class="auth-button" id="signupButton">Create Account</button>
+                    <div class="message" id="signupMessage"></div>
+                </form>
+
+                <div class="divider"><span>OR</span></div>
+
+                <div class="signup-link">
+                    Already have an account?
+                    <a href="../index.html">Sign In</a>
+                </div>
+            </div>
+        </main>
+
+        <footer class="auth-footer">
+            <span>IoT Insight</span>
+            <span>•</span>
+            <span>Industrial Monitoring</span>
+            <span>•</span>
+            <span>Analytics Platform</span>
+        </footer>
+    </div>
+
+    <script type="module" src="../js/auth.js"></script>
+    <script type="module" src="../js/time-theme.js"></script>
+</body>
+</html>

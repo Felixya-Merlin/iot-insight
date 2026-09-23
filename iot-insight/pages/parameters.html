@@ -1,0 +1,930 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <title>Parameters | IoT Insight</title>
+
+    <link rel="stylesheet" href="../css/main.css">
+    <link rel="stylesheet" href="../css/layout.css">
+    <link rel="stylesheet" href="../css/components.css">
+    <link rel="stylesheet" href="../css/responsive.css">
+
+    <style>
+
+        .parameter-intro {
+            background: linear-gradient(
+                135deg,
+                #eff6ff,
+                #f8fafc
+            );
+
+            border: 1px solid #dbeafe;
+
+            border-radius: 16px;
+
+            padding: 22px;
+
+            margin-bottom: 24px;
+
+            display: flex;
+
+            align-items: center;
+
+            gap: 17px;
+        }
+
+        .parameter-intro-icon {
+            width: 50px;
+            height: 50px;
+
+            flex-shrink: 0;
+
+            border-radius: 13px;
+
+            background: #2563eb;
+
+            color: white;
+
+            display: flex;
+
+            align-items: center;
+
+            justify-content: center;
+
+            font-size: 22px;
+        }
+
+        .parameter-intro h3 {
+            font-size: 16px;
+            margin-bottom: 4px;
+            color: #0f172a;
+        }
+
+        .parameter-intro p {
+            font-size: 13px;
+            color: #64748b;
+        }
+
+        .parameter-toolbar {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-bottom: 20px;
+        }
+
+        .parameter-toolbar h2 {
+            font-size: 19px;
+            color: #0f172a;
+        }
+
+        .parameter-toolbar p {
+            color: #64748b;
+            font-size: 13px;
+            margin-top: 3px;
+        }
+
+        .parameter-registry {
+            background: #ffffff;
+
+            border: 1px solid #e5e7eb;
+
+            border-radius: 16px;
+
+            overflow: hidden;
+
+            box-shadow:
+                0 3px 15px
+                rgba(15, 23, 42, .04);
+        }
+
+        .registry-header {
+            padding: 20px 22px;
+
+            border-bottom: 1px solid #e5e7eb;
+
+            display: flex;
+
+            align-items: center;
+
+            justify-content: space-between;
+        }
+
+        .registry-title {
+            display: flex;
+
+            align-items: center;
+
+            gap: 12px;
+        }
+
+        .registry-title h3 {
+            font-size: 17px;
+        }
+
+        .parameter-count {
+            background: #eff6ff;
+
+            color: #2563eb;
+
+            padding: 5px 10px;
+
+            border-radius: 20px;
+
+            font-size: 12px;
+
+            font-weight: 700;
+        }
+
+        .parameter-table-wrapper {
+            overflow-x: auto;
+        }
+
+        .parameter-table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+
+        .parameter-table th {
+            text-align: left;
+
+            padding: 14px 20px;
+
+            background: #f8fafc;
+
+            color: #64748b;
+
+            font-size: 11px;
+
+            font-weight: 700;
+
+            text-transform: uppercase;
+
+            letter-spacing: .04em;
+
+            white-space: nowrap;
+        }
+
+        .parameter-table td {
+            padding: 17px 20px;
+
+            border-top: 1px solid #eef2f7;
+
+            font-size: 14px;
+
+            color: #334155;
+
+            white-space: nowrap;
+        }
+
+        .parameter-name {
+            display: flex;
+
+            align-items: center;
+
+            gap: 11px;
+        }
+
+        .parameter-icon {
+            width: 36px;
+            height: 36px;
+
+            border-radius: 9px;
+
+            background: #eff6ff;
+
+            color: #2563eb;
+
+            display: flex;
+
+            align-items: center;
+
+            justify-content: center;
+        }
+
+        .parameter-name strong {
+            display: block;
+            color: #0f172a;
+        }
+
+        .parameter-name small {
+            color: #64748b;
+            font-size: 11px;
+        }
+
+        .binary-badge {
+            display: inline-block;
+
+            padding: 5px 9px;
+
+            border-radius: 7px;
+
+            background: #f1f5f9;
+
+            color: #475569;
+
+            font-size: 12px;
+
+            font-weight: 700;
+        }
+
+        .active-badge {
+            display: inline-flex;
+
+            align-items: center;
+
+            gap: 6px;
+
+            padding: 5px 10px;
+
+            border-radius: 20px;
+
+            background: #ecfdf5;
+
+            color: #059669;
+
+            font-size: 12px;
+
+            font-weight: 700;
+        }
+
+        .active-badge::before {
+            content: "";
+
+            width: 7px;
+
+            height: 7px;
+
+            border-radius: 50%;
+
+            background: currentColor;
+        }
+
+        .empty-parameter-state {
+            padding: 70px 20px;
+
+            text-align: center;
+        }
+
+        .empty-parameter-icon {
+            width: 65px;
+            height: 65px;
+
+            margin: 0 auto 17px;
+
+            border-radius: 18px;
+
+            background: #eff6ff;
+
+            color: #2563eb;
+
+            display: flex;
+
+            align-items: center;
+
+            justify-content: center;
+
+            font-size: 28px;
+        }
+
+        .empty-parameter-state h3 {
+            color: #0f172a;
+            margin-bottom: 7px;
+        }
+
+        .empty-parameter-state p {
+            max-width: 430px;
+
+            margin: auto;
+
+            color: #64748b;
+
+            font-size: 14px;
+        }
+
+        /* MODAL */
+
+        .modal-overlay {
+            position: fixed;
+
+            inset: 0;
+
+            background: rgba(15, 23, 42, .55);
+
+            display: none;
+
+            align-items: center;
+
+            justify-content: center;
+
+            z-index: 1000;
+
+            padding: 20px;
+        }
+
+        .modal-overlay.active {
+            display: flex;
+        }
+
+        .modal {
+            width: 100%;
+
+            max-width: 560px;
+
+            background: #ffffff;
+
+            border-radius: 18px;
+
+            overflow: hidden;
+
+            box-shadow:
+                0 25px 60px
+                rgba(15, 23, 42, .25);
+        }
+
+        .modal-header {
+            padding: 20px 22px;
+
+            border-bottom: 1px solid #e5e7eb;
+
+            display: flex;
+
+            align-items: center;
+
+            justify-content: space-between;
+        }
+
+        .modal-header h3 {
+            font-size: 18px;
+        }
+
+        .close-modal {
+            border: none;
+
+            background: transparent;
+
+            color: #64748b;
+
+            font-size: 24px;
+
+            cursor: pointer;
+        }
+
+        .modal-body {
+            padding: 22px;
+        }
+
+        .form-group {
+            margin-bottom: 17px;
+        }
+
+        .form-group label {
+            display: block;
+
+            margin-bottom: 7px;
+
+            font-size: 13px;
+
+            font-weight: 600;
+
+            color: #334155;
+        }
+
+        .form-group input,
+        .form-group select,
+        .form-group textarea {
+            width: 100%;
+
+            padding: 11px 12px;
+
+            border: 1px solid #dbe2ea;
+
+            border-radius: 9px;
+
+            font-family: inherit;
+
+            font-size: 14px;
+
+            outline: none;
+        }
+
+        .form-group textarea {
+            min-height: 90px;
+            resize: vertical;
+        }
+
+        .form-group input:focus,
+        .form-group select:focus,
+        .form-group textarea:focus {
+            border-color: #2563eb;
+
+            box-shadow:
+                0 0 0 3px
+                rgba(37, 99, 235, .1);
+        }
+
+        .threshold-grid {
+            display: grid;
+
+            grid-template-columns: 1fr 1fr;
+
+            gap: 14px;
+        }
+
+        .modal-footer {
+            padding: 16px 22px;
+
+            border-top: 1px solid #e5e7eb;
+
+            display: flex;
+
+            justify-content: flex-end;
+
+            gap: 10px;
+        }
+
+        .btn-secondary,
+        .btn-primary {
+            border: none;
+
+            border-radius: 9px;
+
+            padding: 10px 17px;
+
+            cursor: pointer;
+
+            font-weight: 600;
+        }
+
+        .btn-secondary {
+            background: #f1f5f9;
+            color: #334155;
+        }
+
+        .btn-primary {
+            background: #2563eb;
+            color: white;
+        }
+
+        @media (max-width: 650px) {
+
+            .parameter-intro {
+                align-items: flex-start;
+            }
+
+            .parameter-toolbar {
+                align-items: flex-start;
+                flex-direction: column;
+                gap: 12px;
+            }
+
+            .threshold-grid {
+                grid-template-columns: 1fr;
+            }
+
+        }
+
+    </style>
+
+</head>
+
+
+<body>
+
+<div class="app-layout">
+
+
+    <!-- SIDEBAR -->
+
+    <aside class="sidebar">
+        <div class="sidebar-logo"><h2>IoT Insight</h2><span>Industrial Monitoring</span></div>
+        <nav class="sidebar-nav">
+            <div class="sidebar-nav-title">Workspace</div>
+            <a href="dashboard.html" class="nav-link"><span class="nav-icon">▦</span><span>Dashboard</span></a>
+            <a href="devices.html" class="nav-link"><span class="nav-icon">▣</span><span>Devices</span></a>
+            <a href="device-details.html" class="nav-link"><span class="nav-icon">◫</span><span>Device Details</span></a>
+            <a href="parameters.html" class="nav-link active"><span class="nav-icon">⌁</span><span>Parameters</span></a>
+            <a href="analysis.html" class="nav-link"><span class="nav-icon">◒</span><span>Analysis</span></a>
+            <a href="alerts.html" class="nav-link"><span class="nav-icon">!</span><span>Alerts</span></a>
+            <a href="reports.html" class="nav-link"><span class="nav-icon">▤</span><span>Reports</span></a>
+            <a href="data-import.html" class="nav-link"><span class="nav-icon">⇧</span><span>Data Import</span></a>
+            <a href="settings.html" class="nav-link"><span class="nav-icon">⚙</span><span>Settings</span></a>
+        </nav>
+
+    </aside>
+
+
+    <!-- MAIN -->
+
+    <main class="main-content">
+
+
+        <header class="topbar">
+
+            <button class="menu-button mobile-menu">
+                ☰
+            </button>
+
+            <div class="application-name">
+                Parameter Configuration
+            </div>
+
+
+            <div class="topbar-right">
+
+                <div class="system-status">
+
+                    <span class="status-dot"></span>
+
+                    System Online
+
+                </div>
+
+
+                <div class="profile">
+
+                    <div class="avatar">
+                        AD
+                    </div>
+
+                    <div>
+
+                        <strong>
+                            Admin
+                        </strong>
+
+                        <small>
+                            Administrator
+                        </small>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </header>
+
+
+        <section class="page-content">
+
+
+            <div class="page-header">
+
+                <div>
+
+                    <div class="page-title">
+                        Parameters
+                    </div>
+
+                    <div class="page-subtitle">
+                        Configure and monitor device data parameters
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <!-- PROJECT-SPECIFIC INTRO -->
+
+            <div class="parameter-intro">
+
+                <div class="parameter-intro-icon">
+                    💡
+                </div>
+
+                <div>
+
+                    <h3>
+                        Light Monitoring Parameter
+                    </h3>
+
+                    <p>
+                        This project currently monitors the Light state
+                        using binary values: <strong>0 = OFF</strong>
+                        and <strong>1 = ON</strong>.
+                    </p>
+
+                </div>
+
+            </div>
+
+
+            <!-- TOOLBAR -->
+
+            <div class="parameter-toolbar">
+
+                <div>
+
+                    <h2>
+                        Parameter Registry
+                    </h2>
+
+                    <p>
+                        Manage parameters collected from connected devices.
+                    </p>
+
+                </div>
+
+
+            </div>
+
+
+            <!-- REGISTRY -->
+
+            <div class="parameter-registry">
+
+
+                <div class="registry-header">
+
+                    <div class="registry-title">
+
+                        <h3>
+                            Configured Parameters
+                        </h3>
+
+                        <span
+                            class="parameter-count"
+                            id="parameterCount"
+                        >
+                            0 Parameters
+                        </span>
+
+                    </div>
+
+                </div>
+
+
+                <div class="parameter-table-wrapper">
+
+                    <table class="parameter-table">
+
+                        <thead>
+
+                            <tr>
+
+                                <th>
+                                    Parameter
+                                </th>
+
+                                <th>
+                                    Unit / Type
+                                </th>
+
+                                <th>
+                                    Device
+                                </th>
+
+                                <th>
+                                    Minimum
+                                </th>
+
+                                <th>
+                                    Maximum
+                                </th>
+
+                                <th>
+                                    Status
+                                </th>
+
+                                <th>
+                                    Actions
+                                </th>
+
+                            </tr>
+
+                        </thead>
+
+
+                        <tbody id="parameterTableBody">
+
+                        </tbody>
+
+                    </table>
+
+
+                    <div
+                        class="empty-parameter-state"
+                        id="parameterEmptyState"
+                    >
+
+                        <div class="empty-parameter-icon">
+                            ◈
+                        </div>
+
+                        <h3>
+                            No parameters configured
+                        </h3>
+
+                        <p>
+                            Add a parameter to define the data your
+                            IoT devices will send and monitor.
+                        </p>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+
+        </section>
+
+    </main>
+
+</div>
+
+
+<!-- PARAMETER MODAL -->
+
+<div
+    class="modal-overlay"
+    id="parameterModal"
+>
+
+    <div class="modal">
+
+
+        <div class="modal-header">
+
+            <h3>
+                Add Parameter
+            </h3>
+
+            <button
+                class="close-modal"
+                id="closeParameterModal"
+            >
+                ×
+            </button>
+
+        </div>
+
+
+        <form id="parameterForm">
+
+            <div class="modal-body">
+
+
+                <div class="form-group">
+
+                    <label for="parameterName">
+                        Parameter Name
+                    </label>
+
+                    <input
+                        type="text"
+                        id="parameterName"
+                        name="parameterName"
+                        placeholder="Example: Light"
+                        required
+                    >
+
+                </div>
+
+
+                <div class="form-group">
+
+                    <label for="parameterUnit">
+                        Unit / Data Type
+                    </label>
+
+                    <select
+                        id="parameterUnit"
+                        name="unit"
+                    >
+
+                        <option value="binary">
+                            Binary (0 / 1)
+                        </option>
+
+                        <option value="boolean">
+                            Boolean
+                        </option>
+
+                    </select>
+
+                </div>
+
+
+                <div class="form-group">
+
+                    <label for="parameterDevice">
+                        Device
+                    </label>
+
+                    <select
+                        id="parameterDevice"
+                        name="device"
+                    >
+
+                        <option value="">
+                            Select Device
+                        </option>
+
+                    </select>
+
+                </div>
+
+
+                <div class="threshold-grid">
+
+                    <div class="form-group">
+
+                        <label for="minimumThreshold">
+                            Minimum Value
+                        </label>
+
+                        <input
+                            type="number"
+                            id="minimumThreshold"
+                            name="minimumThreshold"
+                            value="0"
+                            min="0"
+                            max="1"
+                        >
+
+                    </div>
+
+
+                    <div class="form-group">
+
+                        <label for="maximumThreshold">
+                            Maximum Value
+                        </label>
+
+                        <input
+                            type="number"
+                            id="maximumThreshold"
+                            name="maximumThreshold"
+                            value="1"
+                            min="0"
+                            max="1"
+                        >
+
+                    </div>
+
+                </div>
+
+
+                <div class="form-group">
+
+                    <label for="parameterDescription">
+                        Description
+                    </label>
+
+                    <textarea
+                        id="parameterDescription"
+                        name="description"
+                        placeholder="Example: Indicates whether the industrial light is ON or OFF."
+                    ></textarea>
+
+                </div>
+
+
+            </div>
+
+
+            <div class="modal-footer">
+
+                <button
+                    type="button"
+                    class="btn-secondary"
+                    id="cancelParameter"
+                >
+                    Cancel
+                </button>
+
+
+                <button
+                    type="submit"
+                    class="btn-primary"
+                    id="saveParameter"
+                >
+                    Save Parameter
+                </button>
+
+            </div>
+
+
+        </form>
+
+    </div>
+
+</div>
+
+
+<script src="../js/navigation.js"></script>
+<script type="module" src="../js/auth.js"></script>
+<script type="module" src="../js/parameters.js?v=1"></script>
+
+</body>
+
+</html>

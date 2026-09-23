@@ -1,0 +1,266 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Alerts | IoT Insight</title>
+
+    <link rel="stylesheet" href="../css/main.css">
+    <link rel="stylesheet" href="../css/layout.css">
+    <link rel="stylesheet" href="../css/components.css">
+    <link rel="stylesheet" href="../css/responsive.css">
+    <link rel="stylesheet" href="../css/dashboard-shell.css">
+    <style>
+        .alert-filter-grid { display:grid; grid-template-columns:repeat(3,1fr); gap:14px; margin-top:18px; }
+        .alert-filter-actions { display:flex; justify-content:flex-end; margin-top:16px; }
+        .alert-filter-grid label { display:block; margin-bottom:6px; color:var(--muted); font-size:12px; font-weight:600; }
+        .alert-filter-grid input,.alert-filter-grid select { width:100%; }
+        @media(max-width:800px){.alert-filter-grid{grid-template-columns:repeat(2,1fr)}}
+        @media(max-width:520px){.alert-filter-grid{grid-template-columns:1fr}}
+    </style>
+
+</head>
+
+<body>
+
+<div class="app-layout">
+
+    <!-- Sidebar -->
+    <aside class="sidebar" id="sidebar">
+
+        <div class="sidebar-logo">
+
+            <h2>IoT Insight</h2>
+
+            <span>Industrial Analytics</span>
+
+        </div>
+
+        <nav class="sidebar-nav">
+            <div class="sidebar-nav-title">Workspace</div>
+            <a href="dashboard.html" class="nav-link"><span class="nav-icon">▦</span><span>Dashboard</span></a>
+            <a href="devices.html" class="nav-link"><span class="nav-icon">▣</span><span>Devices</span></a>
+            <a href="device-details.html" class="nav-link"><span class="nav-icon">◫</span><span>Device Details</span></a>
+            <a href="parameters.html" class="nav-link"><span class="nav-icon">⌁</span><span>Parameters</span></a>
+            <a href="analysis.html" class="nav-link"><span class="nav-icon">◒</span><span>Analysis</span></a>
+            <a href="alerts.html" class="nav-link active"><span class="nav-icon">!</span><span>Alerts</span></a>
+            <a href="reports.html" class="nav-link"><span class="nav-icon">▤</span><span>Reports</span></a>
+            <a href="data-import.html" class="nav-link"><span class="nav-icon">⇧</span><span>Data Import</span></a>
+            <a href="settings.html" class="nav-link"><span class="nav-icon">⚙</span><span>Settings</span></a>
+        </nav>
+
+    </aside>
+
+
+    <!-- Main -->
+    <main class="main-content">
+
+        <!-- Header -->
+        <header class="topbar">
+
+            <button class="menu-button" id="menuButton">
+                ☰
+            </button>
+
+            <div>
+
+                <h1>Alerts</h1>
+
+                <p class="page-subtitle">
+                    Monitor threshold violations and system alerts.
+                </p>
+
+            </div>
+
+            <div class="profile">
+                
+            </div>
+
+        </header>
+
+
+        <section class="page-content">
+
+            
+
+            <!-- Alert Summary -->
+            <div class="summary-grid">
+
+                <div class="summary-card">
+
+                    <span>Total Alerts</span>
+
+                    <strong>0</strong>
+
+                </div>
+
+
+                <div class="summary-card">
+
+                    <span>Critical</span>
+
+                    <strong>0</strong>
+
+                </div>
+
+
+                <div class="summary-card">
+
+                    <span>Warning</span>
+
+                    <strong>0</strong>
+
+                </div>
+
+
+                <div class="summary-card">
+
+                    <span>Resolved</span>
+
+                    <strong>0</strong>
+
+                </div>
+
+            </div>
+
+
+            <!-- Alert Filters -->
+            <div class="card">
+
+                <div class="card-header">
+
+                    <div>
+
+                        <h3>Alert History</h3>
+
+                        <p class="muted">
+                            Review generated alerts.
+                        </p>
+
+                    </div>
+
+                </div>
+
+
+                <div class="alert-filter-grid" aria-label="Alert filters">
+                    <div class="form-group"><label for="alertStartDate">From date</label><input id="alertStartDate" type="date"></div>
+                    <div class="form-group"><label for="alertEndDate">To date</label><input id="alertEndDate" type="date"></div>
+                    <div class="form-group"><label for="alertSeverity">Severity</label><select id="alertSeverity"><option value="all">All severities</option><option value="critical">Critical</option><option value="warning">Warning</option><option value="info">Info</option></select></div>
+                    <div class="form-group"><label for="alertType">Alert type or category</label><select id="alertType"><option value="all">All types</option></select></div>
+                    <div class="form-group"><label for="alertStatus">Status</label><select id="alertStatus"><option value="all">All statuses</option><option value="read">Read</option><option value="unread">Unread</option><option value="acknowledged">Acknowledged</option><option value="resolved">Resolved</option></select></div>
+                    <div class="form-group"><label for="alertSource">Source system or module</label><select id="alertSource"><option value="all">All sources</option></select></div>
+                </div>
+                <div class="alert-filter-actions"><button class="btn btn-secondary" type="button" id="resetAlertFilters">Reset filters</button></div>
+
+                <div class="filter-tabs">
+
+                    <button
+                        class="filter-tab active"
+                        data-filter="all">
+
+                        All
+
+                    </button>
+
+                    <button
+                        class="filter-tab"
+                        data-filter="warning">
+
+                        Warning
+
+                    </button>
+
+                    <button
+                        class="filter-tab"
+                        data-filter="critical">
+
+                        Critical
+
+                    </button>
+
+                    <button
+                        class="filter-tab"
+                        data-filter="resolved">
+
+                        Resolved
+
+                    </button>
+
+                </div>
+
+
+                <!-- Table -->
+                <div class="table-wrapper">
+
+                    <table>
+
+                        <thead>
+
+                            <tr>
+
+                                <th>Time</th>
+
+                                <th>Device</th>
+
+                                <th>Parameter</th>
+
+                                <th>Type</th>
+
+                                <th>Value</th>
+
+                                <th>Threshold</th>
+
+                                <th>Severity</th>
+
+                                <th>Status</th>
+
+                                <th>Source</th>
+
+                            </tr>
+
+                        </thead>
+
+                        <tbody id="alertsTableBody">
+
+                        </tbody>
+
+                    </table>
+
+                </div>
+
+
+                <!-- Empty State -->
+                <div
+                    class="empty-state"
+                    id="alertsEmptyState">
+
+                    <div class="empty-icon">
+                        🔔
+                    </div>
+
+                    <h3>No alerts available</h3>
+
+                    <p>
+                        Alerts will appear here when configured
+                        parameters exceed their thresholds.
+                    </p>
+
+                </div>
+
+            </div>
+
+        </section>
+
+    </main>
+
+</div>
+
+
+<script src="../js/navigation.js"></script>
+<script type="module" src="../js/auth.js"></script>
+<script type="module" src="../js/alerts.js?v=4"></script>
+
+</body>
+</html>
